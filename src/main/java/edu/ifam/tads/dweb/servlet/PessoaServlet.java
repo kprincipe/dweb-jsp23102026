@@ -107,6 +107,11 @@ public class PessoaServlet extends HttpServlet {
                 pessoa.setNome(nome);
                 pessoa.setTelefone(telefone);
                 pessoa.setEmail(email);
+
+                if (cidadeIndice != null && !cidadeIndice.isEmpty()) {
+                    int indice = Integer.parseInt(cidadeIndice);
+                    pessoa.setCidade(cidades.get(indice));
+                }
             }
 
             resp.sendRedirect("pessoa?acao=listar");
