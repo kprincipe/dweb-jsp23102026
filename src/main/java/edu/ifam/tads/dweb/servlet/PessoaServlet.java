@@ -83,21 +83,31 @@ public class PessoaServlet extends HttpServlet {
 
         if(acao.equals("salvar")) {
             String nome = req.getParameter("nome");
+            String parId = req.getParameter("id");
             String telefone = req.getParameter("telefone");
             String email = req.getParameter("email");
             String cidadeIndice = req.getParameter("cidade");
+            Pessoa pessoa;
 
-            Pessoa pessoa = new Pessoa();
-            pessoa.setNome(nome);
-            pessoa.setTelefone(telefone);
-            pessoa.setEmail(email);
+            if (parId == null) {
 
-            if (cidadeIndice != null && !cidadeIndice.isEmpty()) {
-                int indice = Integer.parseInt(cidadeIndice);
-                pessoa.setCidade(cidades.get(indice));
+                pessoa = new Pessoa();
+                pessoa.setNome(nome);
+                pessoa.setTelefone(telefone);
+                pessoa.setEmail(email);
+
+                if (cidadeIndice != null && !cidadeIndice.isEmpty()) {
+                    int indice = Integer.parseInt(cidadeIndice);
+                    pessoa.setCidade(cidades.get(indice));
+                }
+
+                pessoas.add(pessoa);
+            } else {
+                pessoa = pessoas.get(Integer.parseInt(parId));
+                pessoa.setNome(nome);
+                pessoa.setTelefone(telefone);
+                pessoa.setEmail(email);
             }
-
-            pessoas.add(pessoa);
 
             resp.sendRedirect("pessoa?acao=listar");
         }

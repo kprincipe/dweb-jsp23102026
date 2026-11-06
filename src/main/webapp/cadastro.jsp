@@ -22,6 +22,8 @@
             <label for="nome">Nome:</label><br>
             <input type="text" id="nome" name="nome" value="<% if (idEditar != null) out.print(listaPessoas.get(Integer.parseInt(idEditar)).getNome()); %>" required /><br><br>
 
+            <input type='hidden' id='id' name='id' value='<% if (idEditar != null) out.print(idEditar); %>'></input>
+
             <label for="telefone">Telefone:</label><br>
             <input type="text" id="telefone" name="telefone" value="<% if (idEditar != null) out.print(listaPessoas.get(Integer.parseInt(idEditar)).getTelefone()); %>" required><br><br>
 
