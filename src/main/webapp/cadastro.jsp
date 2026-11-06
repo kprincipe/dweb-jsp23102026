@@ -37,7 +37,7 @@
                     Cidade cidade = listaCidades.get(i);
                 %>
 
-                <option value="<%out.print(i);%>" <% if (listaPessoas.get(Integer.parseInt(idEditar))) %>>
+                <option value="<%out.print(i);%>" <% if (idEditar != null && Integer.parseInt(idEditar) == i) out.print("selected"); %>>
                     <% out.println(cidade.getNome()); %>
                 </option>
 
