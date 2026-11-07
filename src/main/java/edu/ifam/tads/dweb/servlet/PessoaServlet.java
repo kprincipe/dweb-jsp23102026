@@ -79,6 +79,7 @@ public class PessoaServlet extends HttpServlet {
     }
 
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        req.setCharacterEncoding("UTF-8");
         String acao = req.getParameter("acao");
 
         if(acao.equals("salvar")) {
@@ -89,8 +90,17 @@ public class PessoaServlet extends HttpServlet {
             String cidadeIndice = req.getParameter("cidade");
             Pessoa pessoa;
 
-            if (parId == null) {
+            if (parId != null && !parId.isEmpty()) {
+                pessoa = pessoas.get(Integer.parseInt(parId));
+                pessoa.setNome(nome);
+                pessoa.setTelefone(telefone);
+                pessoa.setEmail(email);
 
+                if (cidadeIndice != null && !cidadeIndice.isEmpty()) {
+                    int indice = Integer.parseInt(cidadeIndice);
+                    pessoa.setCidade(cidades.get(indice));
+                }
+            } else {
                 pessoa = new Pessoa();
                 pessoa.setNome(nome);
                 pessoa.setTelefone(telefone);
@@ -102,16 +112,6 @@ public class PessoaServlet extends HttpServlet {
                 }
 
                 pessoas.add(pessoa);
-            } else {
-                pessoa = pessoas.get(Integer.parseInt(parId));
-                pessoa.setNome(nome);
-                pessoa.setTelefone(telefone);
-                pessoa.setEmail(email);
-
-                if (cidadeIndice != null && !cidadeIndice.isEmpty()) {
-                    int indice = Integer.parseInt(cidadeIndice);
-                    pessoa.setCidade(cidades.get(indice));
-                }
             }
 
             resp.sendRedirect("pessoa?acao=listar");

@@ -22,10 +22,10 @@
             <label for="nome">Nome:</label><br>
             <input type="text" id="nome" name="nome" value="<% if (idEditar != null) out.print(listaPessoas.get(Integer.parseInt(idEditar)).getNome()); %>" required /><br><br>
 
-            <input type='hidden' id='id' name='id' value='<% if (idEditar != null) out.print(idEditar); %>'></input>
+            <input type='hidden' id='id' name='id' value='<% if (idEditar != null) out.print(idEditar); else out.print(""); %>'></input>
 
             <label for="telefone">Telefone:</label><br>
-            <input type="text" id="telefone" name="telefone" value="<% if (idEditar != null) out.print(listaPessoas.get(Integer.parseInt(idEditar)).getTelefone()); %>" required><br><br>
+            <input type="text" id="telefone" name="telefone" maxlength="10" value="<% if (idEditar != null) out.print(listaPessoas.get(Integer.parseInt(idEditar)).getTelefone()); %>" required><br><br>
 
             <label for="email">Email:</label><br>
             <input type="text" id="email" name="email" value="<% if (idEditar != null) out.print(listaPessoas.get(Integer.parseInt(idEditar)).getEmail()); %>" required><br><br>
